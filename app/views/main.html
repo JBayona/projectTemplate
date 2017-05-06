@@ -32,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in response">
+      <tr ng-repeat="item in response | filter:searchDescription">
         <td>{{$index+1}}</td>
         <td>{{item.id}}</td>
         <td>
