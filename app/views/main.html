@@ -1,0 +1,51 @@
+<div class="well bs-component">
+  <h1>Template Project</h1>
+  <form class="form-horizontal">
+    <fieldset>
+      <div class="form-group center-element">
+        <label for="inputTask" class="col-md-2 control-label">Description</label>
+        <div class="col-md-5">
+          <input type="text" class="form-control" id="inputTask" placeholder="Description" ng-model="description">
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-raised btn-color" ng-click="add()">Add New</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <h5>Completed Tasks</h5>
+  <table class="table table-hover ">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>ID</th>
+      <th>Description</th> <!--ng-click="reverse=!reverse;order('complete',reverse)"-->
+      <th>ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in response">
+      <td>{{$index+1}}</td>
+      <td>{{item.id}}</td>
+      <td>
+          <input type="text" ng-show="item.edit" class="form-control" ng-model="item.description" />
+          <span ng-hide="item.edit">{{item.description}}</span>
+      </td>
+      <td>
+        <a href="javascript:void(0);" class="btn-link" ng-hide="item.edit || item.delete" ng-click="item.edit = true"><i class="material-icons">mode_edit</i></a>&nbsp;
+         <a href="javascript:void(0);" class="btn-link"  ng-hide="item.edit || item.delete" ng-click="item.delete = true"><i class="material-icons">delete</i></a>
+         <span ng-show="item.delete && !item.edit">
+            <a href="javascript:void(0);" class="btn-link" ng-click="deleteElement(item.id)"><i class="mdi-action-done"></i></a>&nbsp;
+            <a href="javascript:void(0);" class="btn-link" ng-click="item.delete = false"><i class="mdi-action-highlight-remove"></i></a>
+         </span>
+         <span ng-show="item.edit && !item.delete">
+            <a href="javascript:void(0);" class="btn-link" ng-click="updateElement(item.id,'description',item.description)"><i class="mdi-action-done"></i></a>&nbsp;
+            <a href="javascript:void(0);" class="btn-link" ng-click="item.edit = false"><i class="mdi-action-highlight-remove"></i></a>
+         </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
